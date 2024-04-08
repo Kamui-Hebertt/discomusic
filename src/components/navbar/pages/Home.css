@@ -1,0 +1,34 @@
+.home-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.home-content {
+  margin-top: 50px;
+}
+
+.home-content h1 {
+  font-size: 3em;
+  color: #333;
+}
+
+.home-content p {
+  font-size: 1.5em;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}

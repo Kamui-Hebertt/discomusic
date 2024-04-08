@@ -4,7 +4,7 @@ import './SignUpPage.css';
 const SignUp: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: '',
-    lastName: '',
+    nickname: '',
     email: '',
     password: '',
   });
@@ -28,16 +28,16 @@ const SignUp: React.FC = () => {
       <h2>Crie Uma Conta</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" required />
+          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Nome" required />
         </div>
         <div className="form-group">
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" required />
+          <input type="text" name="nickname" value={formData.nickname} onChange={handleChange} placeholder="Nickname" required />
         </div>
         <div className="form-group">
           <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
         </div>
         <div className="form-group">
-          <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
+          <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Senha" required />
         </div>
         <button type="submit">Registrar</button>
       </form>

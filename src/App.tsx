@@ -8,8 +8,6 @@ import LoginPage from './components/navbar/pages/login/LoginPage';
 function App() {
   return (
     <>
- 
-   
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
