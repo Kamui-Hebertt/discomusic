@@ -76,7 +76,7 @@ const LoginPage: React.FC = () => {
         toast.error(error.response.data.error as string);
       } else {
         toast.error("Ocorreu um erro ao fazer login.");
-        localStorage.setItem('authState', '0');
+           localStorage.setItem('authState', '0');
       }
     } finally {
       setLoading(false); // Stop loading
