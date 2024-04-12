@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import NavBarUser from './NavBarUser';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
-
   const history = useNavigate();
+  const [dataMusic, setDataMusic] = useState<any[]>([]); // Ensure dataMusic is always initialized as an array
 
   const checkAuth = async () => {
     const token = localStorage.getItem("tk");
   
     if (!token) {
-      // Handle case where token is not available
       history('/');
       return false;
     }
@@ -24,39 +23,49 @@ const Dashboard: React.FC = () => {
         },
       });
   
-      // Handle response from the server
       console.log(response.data);
-      return true; // Return true if the token is valid
+      return true;
     } catch (error) {
       history('/');
-      // Handle error
-      // console.error('Error checking authentication:', error);
-      // return false; // Return false if there's an error or token is invalid
     }
   };
 
   const getData = async () => {
     const id = localStorage.getItem("id");
-    const response = await axios.get(`https://discomusic-serverside.onrender.com/api/music/user/${Number(id)}`);
-    console.log(response);
-  }
+    try {
+      const response = await axios.get(`https://discomusic-serverside.onrender.com/api/music/user/${Number(id)}`);
+      setDataMusic(response.data.data || []);
+      console.log(response.data.data) // Set dataMusic to an empty array if response.data is falsy
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
-    checkAuth();
-    getData();
-  },[])
+    const fetchData = async () => {
+      await checkAuth();
+      await getData();
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="home-container">
       <NavBarUser />
       <div className="home-content">
         <h1>Minhas Músicas</h1>
-
-
-       
-        {/* <button className="cta-button">Explorar Músicas</button> */}
+        {dataMusic.length === 0 ? (
+          <p>Nenhuma música ainda.</p>
+        ) : (
+          <ul>
+            {dataMusic.map((music: any) => ( // No need for optional chaining operator here
+              <li key={music.id}>{music.title}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

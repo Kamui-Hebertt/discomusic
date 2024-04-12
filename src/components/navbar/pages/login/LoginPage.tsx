@@ -4,7 +4,7 @@ import './LoginPage.css';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { toast } from 'react-toastify'
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 
 const LoginPage: React.FC = () => {
