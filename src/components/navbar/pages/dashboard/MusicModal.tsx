@@ -15,6 +15,7 @@ const MusicModal: React.FC<MusicModalProps> = ({ isOpen, onClose, onUpload }) =>
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(file)
     // if (!file) return; // Prevent submission if no file is selected
 
     try {
